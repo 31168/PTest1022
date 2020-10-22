@@ -22,9 +22,7 @@ namespace PTest1022 {
 
             /*** ●●● ここへ解答を入力 ●●● ***/
 
-            if (inputNum < 5)
-                _ = "５以下です";
-            else
+            outStr = inputNum <= 5 ? "５以下です" : "６以上です";
 
 
 
@@ -44,7 +42,7 @@ namespace PTest1022 {
             /*** ●●● ここへ解答を入力 ●●● ***/
 
 
-
+            data = Exam_2_Stab() ?? -9999;
 
 
 
@@ -74,7 +72,7 @@ namespace PTest1022 {
             /*** ●●● ここへ解答を入力 ●●● ***/
 
 
-
+            title = book?.Title;
 
 
             /*** ●●●●● ここまで ●●●●● ***/
@@ -86,19 +84,22 @@ namespace PTest1022 {
         private void Exam_4() {
             Console.WriteLine($"\n〇問題４");
             var books = new Books().GetBooks();
-            int pageSum = 0;
+            //int pageSum = 0;
 
             //金額が1200円以上の書籍を抽出せよ
             //出力については「タイトル」と「金額」を出力すること
-            
+
             /*** ●●● ここへ解答を入力 ●●● ***/
 
 
+            var act = books.Where(s => s.Price >= 1200).ToList();
 
+            foreach (var fck in act)
+                Console.WriteLine($"{fck.Title}:{fck.Price}");
 
 
             /*** ●●●●● ここまで ●●●●● ***/
-            Console.WriteLine($"ページの合計は{ pageSum }ページです。");
+            //Console.WriteLine($"ページの合計は{ pageSum }ページです。");
         }
 
         //問題５
@@ -112,7 +113,12 @@ namespace PTest1022 {
             /*** ●●● ここへ解答を入力 ●●● ***/
 
 
+            var a = books.Where(s => s.Pages >= 400)
+                 .Where(s => s.Title.Contains("物語"))
+                 .ToList();
 
+            foreach (var fk in a)
+                Console.WriteLine($"{fk.Title}:{fk.Pages}");
 
 
             /*** ●●●●● ここまで ●●●●● ***/
@@ -127,8 +133,10 @@ namespace PTest1022 {
             // 出力例）79 65 53 45 35 34 20 12
             /*** ●●● ここへ解答を入力 ●●● ***/
 
+            var outpt = numbers.OrderByDescending(s => s).Distinct();
 
-
+            foreach (var are in outpt)
+                Console.Write($"{are} ");
 
 
             /*** ●●●●● ここまで ●●●●● ***/
@@ -142,7 +150,7 @@ namespace PTest1022 {
             //引数で受け取った numbers の平均を変数 avg に求めよ
             /*** ●●● ここへ解答を入力 ●●● ***/
 
-
+            avg = numbers.Average();
 
 
 
@@ -163,11 +171,13 @@ namespace PTest1022 {
             /*** ●●● ここへ解答を入力 ●●● ***/
 
 
+            numbers.Select(s => s * 3);
+
+            foreach (var are in numbers)
+                Console.Write($"{are} ");
 
 
-
-
-            /*** ●●●●● ここまで ●●●●● ***/            
+            /*** ●●●●● ここまで ●●●●● ***/
         }
 
         static void Main(string[] args) {
